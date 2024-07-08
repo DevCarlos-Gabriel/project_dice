@@ -2,7 +2,7 @@ use std::io;
 use rand::{thread_rng, Rng};
 
 fn main() {
-  println!("Esse é um jogo de dados, escolha quantos dados você quer e quantos lados tem cada dado\n\
+  println!("Esse é um jogo de dados, escolha quantos dados você quer e quantos lados tem cada dado:\n\n\
   Informe quantos dados você quer no seu jogo:\n\
   ");
 
@@ -20,6 +20,8 @@ fn main() {
   .parse()
   .expect("Erro: Informe um número!");
 
+  println!(" ");
+
   let mut vect_all_dices:Vec<u8> = Vec::new();
 
   // Pegando os lados de cada dado.
@@ -33,6 +35,8 @@ fn main() {
     io::stdin()
     .read_line(&mut sides_dices)
     .expect(&format!("Erro ao pegar o número de lado do dado {}º", num + 1));
+
+    println!(" ");
 
     let sides_dices: u8 = sides_dices
     .trim()
@@ -53,14 +57,14 @@ fn main() {
   
   for i in 0..num_dices
   {
-    println!("O resultado do {}º dado é: {:?}",i+1,result_jogadas(num_dices, vect_all_dices.clone())[i as usize]);
+    println!("O resultado do {}º dado é: {:?}",i+1,match_result(num_dices, vect_all_dices.clone())[i as usize]);
   }
   
 }
 
 // Fazendo as jogadas dos dados.
 
-fn result_jogadas(dices: u8, num_sides: Vec<u8>) -> Vec<u8>
+fn match_result(dices: u8, num_sides: Vec<u8>) -> Vec<u8>
 {
   let mut results: Vec<u8> = Vec::new();
     
